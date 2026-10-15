@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Mutu Pelayanan Kefarmasian Puskesmas</title>
+<style>
+:root{--navy:#14532d;--navy2:#166534;--gold:#d4af37;--bg:#f3f7f2;--card:#fff;--ink:#1d3024;--muted:#607267;--line:#d8e4d9;--red:#b83232;--orange:#a45b00;--green:#23764b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+header{background:linear-gradient(120deg,#124126,#1d6b3b);color:white;padding:22px 16px;border-bottom:5px solid var(--gold)}
+header .wrap,main{max-width:1200px;margin:auto}h1{font-size:clamp(22px,3vw,30px);margin:0 0 6px}header p{margin:0;color:#e2f0e5}.identity{margin-top:12px;padding-top:10px;border-top:1px solid #ffffff44;color:#f4df94;font-weight:700;letter-spacing:.2px}
+main{padding:18px 14px 50px}.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:16px}.tab{border:1px solid var(--line);background:white;border-radius:10px;padding:11px 14px;white-space:nowrap;font-weight:700;color:var(--navy);cursor:pointer}.tab.active{background:var(--navy);color:white;border-color:var(--navy)}
+.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px;margin-bottom:15px;box-shadow:0 2px 8px #15324b0a}
+h2{font-size:20px;color:var(--navy);margin:0 0 12px}h3{font-size:16px;margin:0 0 10px;color:var(--navy)}.muted{color:var(--muted);font-size:13px}.notice{background:#fff8e8;border-left:4px solid var(--gold);padding:12px;border-radius:8px;margin:10px 0 14px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:13px;font-weight:700;color:#354b5b}.field input,.field select,.field textarea, input[type="number"]{border:1px solid #cbd6dd;border-radius:8px;padding:10px;font:inherit;width:100%;background:white}.field textarea{min-height:70px;resize:vertical}
+button{font:inherit;cursor:pointer;border:0;border-radius:9px;padding:10px 14px;font-weight:700}.primary{background:var(--navy);color:white}.secondary{background:#e8eef2;color:var(--navy)}.danger{background:#fae9e9;color:var(--red)}.gold{background:var(--gold);color:#172a37}.buttonrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.dimhead{background:#edf3f6;padding:12px;border-radius:10px;margin:18px 0 8px;display:flex;justify-content:space-between;gap:12px;align-items:center}.dimhead strong{color:var(--navy)}.item{border:1px solid var(--line);border-radius:11px;padding:13px;margin:9px 0;background:white}.itemtop{display:flex;gap:10px;align-items:flex-start}.num{background:var(--navy);color:white;min-width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}.indtext{flex:1;font-weight:600}.evidence{margin:9px 0 10px 40px;font-size:12px;color:var(--muted)}.scores{display:flex;flex-wrap:wrap;gap:7px;margin-left:40px}.scoreopt{display:flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:13px;cursor:pointer}.scoreopt:has(input:checked){border-color:var(--navy);background:#eaf1f5}.scoreopt input{accent-color:var(--navy)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.kpi{border:1px solid var(--line);border-radius:12px;padding:13px;background:white}.kpi .label{font-size:12px;color:var(--muted)}.kpi .value{font-size:24px;font-weight:800;color:var(--navy);margin-top:3px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#edf3f6;color:var(--navy);position:sticky;top:0}td input,td select,td textarea{min-width:110px}.pill{display:inline-block;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:700;background:#edf3f6}.p0{background:#fde8e8;color:#a52b2b}.p1{background:#fff0d7;color:#8a5000}.p2{background:#e2f5e9;color:#216a43}.na{background:#eceff1;color:#54636c}
+.bar{height:9px;background:#e6ecef;border-radius:10px;overflow:hidden}.bar span{height:100%;display:block;background:var(--gold)}.small{font-size:12px}.hidden{display:none!important}.resulthead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.empty{padding:25px;text-align:center;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:15px}
+@media(max-width:760px){.grid{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.scores{margin-left:0}.evidence{margin-left:0}.itemtop{gap:8px}.tab{padding:10px 12px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.kpi .value{font-size:21px}.card{padding:13px}}
+@media print{header{background:white;color:black;border-bottom:2px solid #555;padding:10px}header p{color:#333}.tabs,.buttonrow,.no-print{display:none!important}body{background:white}.panel{display:block!important}.card{box-shadow:none;break-inside:avoid}main{max-width:none;padding:0}.item{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Audit Mutu Pelayanan Kefarmasian Puskesmas</h1><p>Aplikasi offline untuk pencatatan audit, skoring, rekapitulasi, dan prioritas perbaikan</p><div class="identity">apt. Fendy Prasetyawan, S.Farm., M.Farm.</div></div></header>
+<main>
+<div class="notice"><strong>Catatan metodologis:</strong> Indikator dan skala mengikuti dokumen instrumen yang diberikan. Kategori capaian serta aturan prioritas yang disediakan aplikasi adalah rekomendasi awal yang harus ditinjau dan disepakati sebelum digunakan secara resmi atau untuk penelitian.</div>
+<div class="tabs no-print">
+<button class="tab active" data-tab="audit">1. Isi Audit</button><button class="tab" data-tab="hasil">2. Hasil & Skoring</button><button class="tab" data-tab="prioritas">3. Prioritas Perbaikan</button><button class="tab" data-tab="data">4. Data & Pengaturan</button>
+</div>
+
+<section id="audit" class="panel active">
+<div class="card"><h2>A. Identitas Puskesmas</h2>
+<div class="grid">
+<div class="field"><label>Nama Puskesmas *</label><input id="nama" placeholder="Nama Puskesmas"></div>
+<div class="field"><label>Kecamatan</label><input id="kecamatan" placeholder="Kecamatan"></div>
+<div class="field"><label>Tanggal audit *</label><input id="tanggal" type="date"></div>
+<div class="field"><label>Nama auditor</label><input id="auditor" placeholder="Nama auditor"></div>
+<div class="field"><label>Penanggung jawab kefarmasian</label><input id="pj" placeholder="Nama penanggung jawab"></div>
+<div class="field"><label>Jumlah tenaga kefarmasian</label><input id="jumlahTenaga" type="number" min="0" placeholder="Jumlah orang"></div>
+<div class="field"><label>Apoteker (orang)</label><input id="apoteker" type="number" min="0" placeholder="Jumlah apoteker"></div>
+<div class="field"><label>Tenaga Teknis Kefarmasian (orang)</label><input id="ttk" type="number" min="0" placeholder="Jumlah TTK"></div>
+<div class="field"><label>Kode/ID audit</label><input id="auditId" placeholder="Dibuat otomatis jika kosong"></div>
+</div>
+<div class="buttonrow"><button class="primary" id="saveIdentity">Simpan Identitas</button><button class="secondary" id="loadAudit">Muat audit tersimpan</button><button class="secondary" id="newAudit">Audit baru</button></div>
+<p class="muted">Data disimpan di browser/perangkat ini. Gunakan ekspor JSON untuk membuat cadangan sebelum mengganti perangkat atau membersihkan data browser.</p>
+</div>
+<div class="card"><div class="resulthead"><div><h2>B. Penilaian Indikator</h2><p class="muted">Pilih skor berdasarkan bukti yang diperiksa. Cantumkan temuan atau referensi bukti pada kolom keterangan.</p></div><div class="pill" id="progress">0/73 dinilai</div></div>
+<div class="buttonrow no-print"><button class="secondary" id="allNA">Tandai seluruh indikator NA</button><button class="secondary" id="clearScores">Kosongkan seluruh skor</button><button class="primary" id="saveAudit">Simpan Audit</button></div>
+<div id="indicators"></div>
+<div class="buttonrow no-print"><button class="primary" id="saveAudit2">Simpan Audit</button><button class="gold" id="toResults">Lihat Hasil Audit →</button></div>
+</div>
+</section>
+
+<section id="hasil" class="panel">
+<div class="card"><div class="resulthead"><div><h2>Rekapitulasi Hasil Audit</h2><p class="muted">Skor aktual dibandingkan skor maksimum dari indikator yang berlaku dan memiliki skor.</p></div><button class="secondary no-print" onclick="window.print()">Cetak / Simpan PDF</button></div>
+<div class="kpis" id="kpis"></div>
+<div class="notice"><strong>Rumus:</strong> Capaian (%) = (skor aktual ÷ skor maksimal indikator yang dinilai dan berlaku) × 100%. Indikator NA dan kosong tidak dihitung sebagai skor aktual maupun penyebut. Indikator kosong ditampilkan sebagai belum dinilai agar tidak disamakan dengan NA.</div>
+<div class="tablewrap"><table><thead><tr><th>Dimensi</th><th>Jumlah indikator dinilai</th><th>Skor aktual</th><th>Skor maksimal</th><th>Capaian</th><th>Kategori*</th></tr></thead><tbody id="summaryRows"></tbody></table></div>
+<h3 style="margin-top:20px">Capaian per dimensi</h3><div id="bars"></div>
+<p class="muted">*Kategori memakai ambang awal yang dapat diubah pada tab Data & Pengaturan. Kategori ini bukan bagian dari instrumen sumber dan belum otomatis tervalidasi.</p>
+</div>
+<div class="card"><h2>Rincian per Indikator</h2><div class="tablewrap"><table><thead><tr><th>No.</th><th>Dimensi</th><th>Indikator</th><th>Skor</th><th>Bukti/keterangan</th><th>Status</th></tr></thead><tbody id="detailRows"></tbody></table></div></div>
+</section>
+
+<section id="prioritas" class="panel">
+<div class="card"><h2>Identifikasi Masalah Prioritas</h2>
+<p class="muted">Daftar ini menyaring indikator dengan skor 0 atau 1. Penentuan prioritas final tetap memerlukan pertimbangan profesional auditor, terutama risiko keselamatan pasien.</p>
+<div class="notice"><strong>Rekomendasi metodologis:</strong> Skor 0 diberi tingkat awal “Tinggi”, skor 1 “Sedang”. Ini hanya penyaring awal, bukan penilaian risiko klinis tervalidasi. Auditor dapat mengubah prioritas berdasarkan dampak, urgensi, dan konteks lokal.</div>
+<div class="tablewrap"><table><thead><tr><th>No.</th><th>Dimensi / indikator</th><th>Skor</th><th>Bukti / temuan</th><th>Prioritas</th><th>Rencana tindak lanjut</th><th>Penanggung jawab</th><th>Target</th></tr></thead><tbody id="priorityRows"></tbody></table></div>
+<div class="buttonrow no-print"><button class="primary" id="saveFollowups">Simpan tindak lanjut</button><button class="secondary" id="exportPriority">Ekspor prioritas CSV</button></div>
+</div>
+</section>
+
+<section id="data" class="panel">
+<div class="card"><h2>Data Audit Tersimpan</h2><div id="auditList"></div><div class="buttonrow no-print"><button class="primary" id="exportJSON">Cadangkan data (JSON)</button><label class="secondary" style="display:inline-flex;align-items:center;cursor:pointer">Pulihkan cadangan JSON<input type="file" id="importJSON" accept=".json,application/json" hidden></label><button class="secondary" id="exportCSV">Ekspor skor CSV</button><button class="secondary" id="exportSummary">Ekspor rekap CSV</button></div></div>
+<div class="card"><h2>Pengaturan Kategori Capaian</h2>
+<p class="muted">Ambang berikut adalah rekomendasi metodologis awal, bukan kategori dari dokumen instrumen. Ubah sesuai protokol audit atau hasil kesepakatan ahli.</p>
+<div class="grid">
+<div class="field"><label>Minimal kategori “Baik” (%)</label><input id="goodThreshold" type="number" min="0" max="100" value="80"></div>
+<div class="field"><label>Minimal kategori “Cukup” (%)</label><input id="fairThreshold" type="number" min="0" max="100" value="60"></div>
+<div class="field"><label>Nama kategori rendah</label><input id="lowLabel" value="Perlu perbaikan"></div>
+</div>
+<div class="buttonrow"><button class="primary" id="saveSettings">Simpan pengaturan</button><button class="secondary" id="resetSettings">Kembalikan ambang awal</button></div>
+<p class="muted">Aturan default: Baik ≥ 80%; Cukup ≥ 60% hingga kurang dari 80%; Perlu perbaikan &lt; 60%. Angka ini tidak boleh dianggap sebagai standar regulasi tanpa dasar tambahan.</p>
+</div>
+<div class="card"><h2>Petunjuk Penggunaan</h2><ol>
+<li>Isi identitas audit, lalu simpan.</li><li>Untuk setiap indikator, pilih 2 = memenuhi, 1 = sebagian memenuhi, 0 = tidak memenuhi, atau NA = tidak berlaku/tidak dapat dinilai.</li><li>Catat bukti atau temuan secara spesifik. Jangan mengisi berdasarkan asumsi.</li><li>Simpan audit, buka Hasil & Skoring, lalu periksa indikator yang belum dinilai.</li><li>Gunakan Prioritas Perbaikan untuk menyusun tindakan, penanggung jawab, dan target waktu.</li><li>Ekspor JSON sebagai cadangan. Ekspor CSV untuk analisis lebih lanjut.</li>
+</ol><p class="muted">Aplikasi tidak mengirim data ke server. Data tersimpan secara lokal di browser yang digunakan.</p></div>
+<div class="card"><h2>Catatan Pengembangan Instrumen</h2><ul><li>Instrumen sumber memiliki 73 indikator dalam 8 dimensi.</li><li>Skala sumber: 2 = memenuhi/terlaksana sesuai indikator; 1 = sebagian memenuhi/terlaksana; 0 = tidak memenuhi/tidak terlaksana; NA = tidak berlaku/tidak dapat dinilai.</li><li>Rekomendasi: buat pedoman operasional per indikator agar skor antar-auditor konsisten.</li><li>Rekomendasi: tetapkan periode bukti dan metode pemilihan sampel resep/rekam pelayanan sebelum audit.</li><li>Rekomendasi: validasi kategori dan aturan prioritas sebelum dipakai sebagai instrumen penelitian.</li></ul></div>
+</section>
+<footer>Audit Mutu Pelayanan Kefarmasian Puskesmas • Aplikasi offline • Versi 1.0</footer>
+</main>
+<script>
+const DIMS = [
+{name:"Sumber daya dan tata kelola",items:[
+["Terdapat tenaga kefarmasian yang bertanggung jawab terhadap pelayanan kefarmasian","SK/penugasan"],
+["Terdapat pembagian tugas tenaga kefarmasian","Dokumen pembagian tugas"],
+["Tersedia SOP pelayanan kefarmasian","Dokumen SOP"],
+["SOP tersedia dan mudah diakses petugas","Observasi/dokumen"],
+["Tenaga kefarmasian memahami SOP pelayanan","Wawancara"],
+["Terdapat kegiatan peningkatan kompetensi tenaga kefarmasian","Sertifikat/dokumentasi"],
+["Terdapat dokumentasi pelaksanaan pelayanan kefarmasian","Dokumen"],
+["Terdapat monitoring dan evaluasi pelayanan kefarmasian","Dokumen monev"]]},
+{name:"Pengelolaan sediaan farmasi dan BMHP",items:[
+["Perencanaan kebutuhan sediaan farmasi dilakukan secara terdokumentasi","Dokumen perencanaan"],
+["Permintaan sediaan farmasi dilakukan sesuai kebutuhan","Dokumen permintaan"],
+["Penerimaan sediaan farmasi dilakukan dengan pemeriksaan yang sesuai","Dokumen penerimaan"],
+["Penyimpanan obat sesuai persyaratan","Observasi"],
+["Penataan obat dilakukan secara sistematis","Observasi"],
+["Penerapan prinsip FEFO/FIFO sesuai kebutuhan","Observasi"],
+["Obat rusak/kedaluwarsa dipisahkan dan ditangani sesuai prosedur","Observasi/dokumen"],
+["Suhu penyimpanan dipantau dan dicatat","Log suhu"],
+["Kartu stok tersedia dan diperbarui","Kartu stok"],
+["Stok fisik sesuai dengan pencatatan","Stock opname"],
+["Pengendalian kekosongan obat dilakukan","Dokumen/laporan"],
+["Pengelolaan obat kedaluwarsa dilakukan secara terdokumentasi","Dokumen"],
+["Pelaporan pengelolaan sediaan farmasi dilakukan","Laporan"],
+["Monitoring pengelolaan sediaan farmasi dilakukan secara berkala","Dokumen monev"]]},
+{name:"Pelayanan resep",items:[
+["Resep diterima dan diverifikasi oleh petugas","Observasi"],
+["Dilakukan pengkajian resep","Dokumentasi/observasi"],
+["Kelengkapan administratif resep diperiksa","Rekam/dokumen"],
+["Aspek farmasetik diperiksa","Rekam/dokumen"],
+["Aspek klinis diperiksa sesuai kewenangan","Rekam/dokumen"],
+["Obat disiapkan sesuai resep","Observasi"],
+["Etiket obat lengkap dan jelas","Observasi"],
+["Identitas pasien diverifikasi sebelum penyerahan obat","Observasi"],
+["Ketepatan obat diperiksa sebelum diserahkan","Observasi/SOP"],
+["Dilakukan pemeriksaan akhir sebelum penyerahan","Observasi"],
+["Waktu pelayanan resep dipantau","Rekap/observasi"],
+["Kesalahan pelayanan obat dicatat dan ditindaklanjuti","Dokumen"]]},
+{name:"Pemberian informasi obat",items:[
+["Pasien memperoleh informasi mengenai nama obat","Observasi/wawancara"],
+["Pasien memperoleh informasi mengenai kegunaan obat","Observasi/wawancara"],
+["Pasien memperoleh informasi mengenai dosis/cara penggunaan","Observasi/wawancara"],
+["Pasien memperoleh informasi mengenai waktu penggunaan","Observasi/wawancara"],
+["Pasien memperoleh informasi mengenai lama penggunaan","Observasi/wawancara"],
+["Informasi mengenai penyimpanan diberikan bila diperlukan","Observasi/wawancara"],
+["Informasi mengenai efek samping/peringatan diberikan bila relevan","Observasi/wawancara"],
+["Petugas memastikan pemahaman pasien","Observasi"]]},
+{name:"Konseling",items:[
+["Tersedia fasilitas/tempat konseling yang memadai","Observasi"],
+["Pasien yang membutuhkan konseling diidentifikasi","SOP/observasi"],
+["Konseling dilakukan oleh tenaga kefarmasian sesuai kewenangan","Observasi/dokumen"],
+["Konseling mencakup cara penggunaan obat","Observasi"],
+["Konseling mencakup hal-hal yang perlu diperhatikan pasien","Observasi"],
+["Pemahaman pasien dievaluasi","Observasi"],
+["Pelaksanaan konseling didokumentasikan","Dokumen"]]},
+{name:"Pelayanan farmasi klinik",items:[
+["Pengkajian penggunaan obat dilakukan sesuai kebutuhan","Dokumen"],
+["Identifikasi masalah terkait obat dilakukan","Rekam pelayanan"],
+["Intervensi kefarmasian didokumentasikan","Dokumen"],
+["Monitoring terapi dilakukan pada pasien yang memerlukan","Dokumen"],
+["Tindak lanjut masalah terkait obat dilakukan","Dokumen"],
+["Komunikasi dengan tenaga kesehatan lain dilakukan bila diperlukan","Dokumentasi"],
+["Pelayanan farmasi klinik dievaluasi secara berkala","Dokumen monev"]]},
+{name:"Sarana dan prasarana pelayanan",items:[
+["Ruang pelayanan kefarmasian tersedia","Observasi"],
+["Area pelayanan tertata dengan baik","Observasi"],
+["Area penyimpanan obat memadai","Observasi"],
+["Kondisi penyimpanan mendukung mutu obat","Observasi"],
+["Tersedia fasilitas pemberian informasi obat","Observasi"],
+["Tersedia fasilitas konseling bila diperlukan","Observasi"],
+["Kebersihan area pelayanan terjaga","Observasi"],
+["Kenyamanan area pelayanan memadai","Observasi"],
+["Privasi pasien terjaga dalam pelayanan yang membutuhkan privasi","Observasi"]]},
+{name:"Monitoring, evaluasi, dan peningkatan mutu",items:[
+["Terdapat indikator mutu pelayanan kefarmasian","Dokumen"],
+["Pengukuran indikator mutu dilakukan secara berkala","Rekap data"],
+["Hasil pengukuran dianalisis","Laporan"],
+["Masalah pelayanan diidentifikasi","Dokumen"],
+["Terdapat rencana tindak lanjut","Dokumen"],
+["Tindak lanjut perbaikan dilaksanakan","Bukti kegiatan"],
+["Hasil perbaikan dievaluasi kembali","Dokumen"],
+["Hasil monitoring digunakan dalam perbaikan pelayanan","Bukti tindak lanjut"]]}
+];
+let current = {id:"",meta:{},scores:{},notes:{},followups:{}};
+let audits = [];
+let settings = {good:80,fair:60,low:"Perlu perbaikan"};
+const $=id=>document.getElementById(id);
+const allItems=[];let n=0;
+DIMS.forEach((d,di)=>d.items.forEach((it,ii)=>allItems.push({id:String(++n),dim:di,dimName:d.name,text:it[0],evidence:it[1]})));
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,"-")}
+function renderIndicators(){
+ let out="",idx=0;
+ DIMS.forEach((d,di)=>{out+=`<div class="dimhead"><strong>${String.fromCharCode(67+di)}. ${esc(d.name)}</strong><span class="pill">${d.items.length} indikator</span></div>`;
+ d.items.forEach((it,ii)=>{const item=allItems[idx++],v=current.scores[item.id]??"",note=current.notes[item.id]??"";
+ out+=`<div class="item"><div class="itemtop"><div class="num">${item.id}</div><div class="indtext">${esc(item.text)}</div></div><div class="evidence">Bukti yang dinilai: ${esc(item.evidence)}</div><div class="scores">`+
+ [["2","Memenuhi"],["1","Sebagian"],["0","Tidak memenuhi"],["NA","Tidak berlaku / tidak dapat dinilai"]].map(([val,label])=>`<label class="scoreopt"><input type="radio" name="score-${item.id}" value="${val}" ${String(v)===val?"checked":""} onchange="setScore('${item.id}','${val}')"><span>${val} — ${label}</span></label>`).join("")+
+ `</div><div class="field" style="margin:10px 0 0 0"><label for="note-${item.id}">Keterangan / bukti aktual / temuan (opsional)</label><textarea id="note-${item.id}" placeholder="Contoh: nomor dokumen, tanggal observasi, hasil pemeriksaan..." onchange="setNote('${item.id}',this.value)">${esc(note)}</textarea></div></div>`;
+ });});
+ $("indicators").innerHTML=out;updateProgress();
+}
+function setScore(id,val){current.scores[id]=val;updateProgress();renderResults();}
+function setNote(id,val){current.notes[id]=val;}
+function updateProgress(){const done=allItems.filter(x=>current.scores[x.id]!==undefined&&current.scores[x.id]!=="").length;$("progress").textContent=`${done}/73 dinilai`;}
+function metaFromForm(){return {nama:$("nama").value.trim(),kecamatan:$("kecamatan").value.trim(),tanggal:$("tanggal").value,auditor:$("auditor").value.trim(),pj:$("pj").value.trim(),jumlahTenaga:$("jumlahTenaga").value,apoteker:$("apoteker").value,ttk:$("ttk").value,auditId:$("auditId").value.trim()};}
+function formFromMeta(m={}){["nama","kecamatan","tanggal","auditor","pj","jumlahTenaga","apoteker","ttk","auditId"].forEach(k=>$(k).value=m[k]??"");}
+function saveCurrent(show=true){
+ current.meta=metaFromForm();
+ if(!current.meta.nama){alert("Nama Puskesmas wajib diisi.");return false}
+ if(!current.meta.tanggal){alert("Tanggal audit wajib diisi.");return false}
+ if(!current.id)current.id=current.meta.auditId||("AUD-"+Date.now().toString().slice(-8));
+ current.meta.auditId=current.id;
+ const i=audits.findIndex(a=>a.id===current.id);const copy=JSON.parse(JSON.stringify(current));
+ if(i>=0)audits[i]=copy;else audits.push(copy);
+ persist();renderAuditList();renderResults();renderPriorities();
+ if(show)alert("Audit berhasil disimpan di perangkat ini.");return true;
+}
+function persist(){localStorage.setItem("auditMutuPuskesmasV1",JSON.stringify({audits,settings}));}
+function restoreLocal(){try{const d=JSON.parse(localStorage.getItem("auditMutuPuskesmasV1")||"{}");audits=d.audits||[];settings={...settings,...(d.settings||{})}}catch(e){}applySettings();renderAuditList();}
+function loadCurrent(a){current=JSON.parse(JSON.stringify(a));formFromMeta(current.meta);renderIndicators();renderResults();renderPriorities();switchTab("audit");window.scrollTo({top:0,behavior:"smooth"});}
+function blankAudit(){current={id:"",meta:{},scores:{},notes:{},followups:{}};formFromMeta({tanggal:new Date().toISOString().slice(0,10)});renderIndicators();renderResults();renderPriorities();}
+function setTab(name){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===name));if(name==="hasil")renderResults();if(name==="prioritas")renderPriorities();if(name==="data")renderAuditList();}
+function switchTab(name){setTab(name)}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));
+function statusFor(item){const v=current.scores[item.id];if(v===undefined||v==="")return "Belum dinilai";if(v==="NA")return "NA";if(v==="0")return "Tidak memenuhi";if(v==="1")return "Sebagian memenuhi";return "Memenuhi"}
+function getStats(items){
+ let scored=items.filter(x=>["0","1","2"].includes(String(current.scores[x.id])));
+ let na=items.filter(x=>current.scores[x.id]==="NA").length;
+ let score=scored.reduce((s,x)=>s+Number(current.scores[x.id]),0),max=scored.length*2;
+ let pct=max?score/max*100:null;
+ return {scored:scored.length,na,blank:items.length-scored.length-na,score,max,pct};
+}
+function category(pct){if(pct===null)return "Belum ada skor";if(pct>=Number(settings.good))return "Baik";if(pct>=Number(settings.fair))return "Cukup";return settings.low||"Perlu perbaikan"}
+function renderResults(){
+ const stats=getStats(allItems),allDims=DIMS.map((d,di)=>({name:d.name,items:allItems.filter(x=>x.dim===di),...getStats(allItems.filter(x=>x.dim===di))}));
+ $("kpis").innerHTML=[["Indikator dinilai",stats.scored+"/73"],["Skor aktual",stats.score],["Skor maksimal",stats.max],["Capaian total",stats.pct===null?"—":stats.pct.toFixed(1)+"%"]].map(x=>`<div class="kpi"><div class="label">${x[0]}</div><div class="value">${x[1]}</div></div>`).join("");
+ $("summaryRows").innerHTML=allDims.map(d=>`<tr><td>${esc(d.name)}</td><td>${d.scored} / ${d.items.length}<div class="small muted">${d.na} NA · ${d.blank} belum dinilai</div></td><td>${d.score}</td><td>${d.max}</td><td>${d.pct===null?"—":d.pct.toFixed(1)+"%"}</td><td><span class="pill">${esc(category(d.pct))}</span></td></tr>`).join("")+
+ `<tr><th>TOTAL</th><th>${stats.scored}/73<div class="small">${stats.na} NA · ${stats.blank} belum dinilai</div></th><th>${stats.score}</th><th>${stats.max}</th><th>${stats.pct===null?"—":stats.pct.toFixed(1)+"%"}</th><th>${esc(category(stats.pct))}</th></tr>`;
+ $("bars").innerHTML=allDims.map(d=>`<div style="margin:12px 0"><div class="resulthead"><span>${esc(d.name)}</span><strong>${d.pct===null?"—":d.pct.toFixed(1)+"%"}</strong></div><div class="bar"><span style="width:${d.pct||0}%"></span></div></div>`).join("");
+ $("detailRows").innerHTML=allItems.map(x=>`<tr><td>${x.id}</td><td>${esc(x.dimName)}</td><td>${esc(x.text)}</td><td>${current.scores[x.id]??"—"}</td><td>${esc(current.notes[x.id]||"")}</td><td><span class="pill ${current.scores[x.id]==="0"?"p0":current.scores[x.id]==="1"?"p1":current.scores[x.id]==="2"?"p2":current.scores[x.id]==="NA"?"na":""}">${esc(statusFor(x))}</span></td></tr>`).join("");
+}
+function renderPriorities(){
+ const items=allItems.filter(x=>["0","1"].includes(String(current.scores[x.id])));
+ if(!items.length){$("priorityRows").innerHTML=`<tr><td colspan="8" class="empty">Belum ada indikator dengan skor 0 atau 1. Isi skor terlebih dahulu. Skor kosong dan NA tidak otomatis dianggap memenuhi.</td></tr>`;return}
+ $("priorityRows").innerHTML=items.map((x,i)=>{let f=current.followups[x.id]||{};let p=f.priority||(current.scores[x.id]==="0"?"Tinggi":"Sedang");
+ return `<tr><td>${i+1}</td><td><strong>${esc(x.dimName)}</strong><br>${x.id}. ${esc(x.text)}</td><td><span class="pill ${current.scores[x.id]==="0"?"p0":"p1"}">${current.scores[x.id]}</span></td><td>${esc(current.notes[x.id]||"Belum ada keterangan")}</td><td><select onchange="setFollow('${x.id}','priority',this.value)">${["Tinggi","Sedang","Rendah"].map(v=>`<option ${p===v?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea onchange="setFollow('${x.id}','action',this.value)" placeholder="Tindakan korektif...">${esc(f.action||"")}</textarea></td><td><input value="${esc(f.owner||"")}" onchange="setFollow('${x.id}','owner',this.value)" placeholder="Penanggung jawab"></td><td><input type="date" value="${esc(f.target||"")}" onchange="setFollow('${x.id}','target',this.value)"></td></tr>`;
+ }).join("");
+}
+function setFollow(id,key,val){if(!current.followups[id])current.followups[id]={};current.followups[id][key]=val;}
+function renderAuditList(){
+ if(!audits.length){$("auditList").innerHTML='<div class="empty">Belum ada audit tersimpan.</div>';return}
+ $("auditList").innerHTML=`<div class="tablewrap"><table><thead><tr><th>Puskesmas</th><th>Tanggal</th><th>Auditor</th><th>Kemajuan</th><th>Capaian</th><th>Aksi</th></tr></thead><tbody>${audits.map(a=>{let its=allItems.filter(x=>["0","1","2","NA"].includes(String(a.scores[x.id])));let sc=its.filter(x=>["0","1","2"].includes(String(a.scores[x.id])));let score=sc.reduce((s,x)=>s+Number(a.scores[x.id]),0),max=sc.length*2;return `<tr><td>${esc(a.meta.nama||"-")}<div class="small muted">${esc(a.id)}</div></td><td>${esc(a.meta.tanggal||"-")}</td><td>${esc(a.meta.auditor||"-")}</td><td>${its.length}/73</td><td>${max?(score/max*100).toFixed(1)+"%":"—"}</td><td><button class="secondary" onclick="loadById('${a.id}')">Buka</button> <button class="danger" onclick="deleteAudit('${a.id}')">Hapus</button></td></tr>`}).join("")}</tbody></table></div>`;
+}
+function loadById(id){const a=audits.find(x=>x.id===id);if(a)loadCurrent(a)}
+function deleteAudit(id){if(!confirm("Hapus audit ini dari perangkat? Tindakan tidak dapat dibatalkan."))return;audits=audits.filter(a=>a.id!==id);if(current.id===id)blankAudit();persist();renderAuditList()}
+function download(name,content,type="text/plain;charset=utf-8"){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function csvCell(v){let s=String(v??"");if(/^[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
+function exportScores(){let rows=[["ID Audit","Nama Puskesmas","Tanggal","Auditor","No","Dimensi","Indikator","Bukti yang dinilai","Skor","Status","Keterangan"]];allItems.forEach(x=>rows.push([current.id,current.meta.nama,current.meta.tanggal,current.meta.auditor,x.id,x.dimName,x.text,x.evidence,current.scores[x.id]??"",statusFor(x),current.notes[x.id]||""]));download("skor_audit_"+(current.id||"belum_disimpan")+".csv","\ufeff"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n"),"text/csv;charset=utf-8")}
+function exportSummary(){let rows=[["ID Audit","Nama Puskesmas","Tanggal","Dimensi","Indikator dinilai","NA","Belum dinilai","Skor aktual","Skor maksimal","Capaian (%)","Kategori"]];DIMS.forEach((d,di)=>{let its=allItems.filter(x=>x.dim===di),s=getStats(its);rows.push([current.id,current.meta.nama,current.meta.tanggal,d.name,s.scored,s.na,s.blank,s.score,s.max,s.pct===null?"":s.pct.toFixed(2),category(s.pct)])});let s=getStats(allItems);rows.push([current.id,current.meta.nama,current.meta.tanggal,"TOTAL",s.scored,s.na,s.blank,s.score,s.max,s.pct===null?"":s.pct.toFixed(2),category(s.pct)]);download("rekap_audit_"+(current.id||"belum_disimpan")+".csv","\ufeff"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n"),"text/csv;charset=utf-8")}
+function exportPriorities(){let rows=[["ID Audit","Nama Puskesmas","Tanggal","No indikator","Dimensi","Indikator","Skor","Temuan","Prioritas","Rencana tindak lanjut","Penanggung jawab","Target"]];allItems.filter(x=>["0","1"].includes(String(current.scores[x.id]))).forEach(x=>{let f=current.followups[x.id]||{};rows.push([current.id,current.meta.nama,current.meta.tanggal,x.id,x.dimName,x.text,current.scores[x.id],current.notes[x.id]||"",f.priority||(current.scores[x.id]==="0"?"Tinggi":"Sedang"),f.action||"",f.owner||"",f.target||""])});download("prioritas_audit_"+(current.id||"belum_disimpan")+".csv","\ufeff"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n"),"text/csv;charset=utf-8")}
+function applySettings(){$("goodThreshold").value=settings.good;$("fairThreshold").value=settings.fair;$("lowLabel").value=settings.low}
+$("saveIdentity").onclick=()=>saveCurrent();
+$("saveAudit").onclick=$("saveAudit2").onclick=()=>saveCurrent();
+$("loadAudit").onclick=()=>{if(!audits.length){alert("Belum ada audit tersimpan.");return}renderAuditList();setTab("data")};
+$("newAudit").onclick=()=>{if(confirm("Mulai audit baru? Pastikan audit sebelumnya sudah disimpan."))blankAudit()};
+$("allNA").onclick=()=>{if(confirm("Tandai semua indikator sebagai NA?")){allItems.forEach(x=>current.scores[x.id]="NA");renderIndicators();renderResults()}};
+$("clearScores").onclick=()=>{if(confirm("Kosongkan seluruh skor?")){current.scores={};renderIndicators();renderResults();renderPriorities()}};
+$("toResults").onclick=()=>{saveCurrent(false);setTab("hasil")};
+$("saveFollowups").onclick=()=>{saveCurrent(false);alert("Tindak lanjut disimpan bersama audit.")};
+$("exportPriority").onclick=exportPriorities;$("exportCSV").onclick=exportScores;$("exportSummary").onclick=exportSummary;
+$("exportJSON").onclick=()=>download("cadangan_audit_mutu_puskesmas.json",JSON.stringify({format:"auditMutuPuskesmasV1",exportedAt:new Date().toISOString(),audits,settings},null,2),"application/json");
+$("importJSON").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!Array.isArray(obj.audits))throw new Error("Format cadangan tidak dikenali");if(!confirm("Pulihkan cadangan? Audit dengan ID sama akan diganti."))return;obj.audits.forEach(a=>{const i=audits.findIndex(x=>x.id===a.id);if(i>=0)audits[i]=a;else audits.push(a)});if(obj.settings)settings={...settings,...obj.settings};persist();applySettings();renderAuditList();renderResults();alert("Cadangan berhasil dipulihkan.")}catch(err){alert("Gagal memulihkan file: "+err.message)}e.target.value=""};
+$("saveSettings").onclick=()=>{let g=Number($("goodThreshold").value),f=Number($("fairThreshold").value),l=$("lowLabel").value.trim()||"Perlu perbaikan";if(!(g>=0&&g<=100&&f>=0&&f<=100&&g>f)){alert("Ambang harus 0–100 dan kategori Baik harus lebih tinggi daripada kategori Cukup.");return}settings={good:g,fair:f,low:l};persist();renderResults();alert("Pengaturan kategori disimpan.")};
+$("resetSettings").onclick=()=>{settings={good:80,fair:60,low:"Perlu perbaikan"};persist();applySettings();renderResults()};
+restoreLocal();blankAudit();renderIndicators();renderResults();renderPriorities();
+</script>
+</body></html>
